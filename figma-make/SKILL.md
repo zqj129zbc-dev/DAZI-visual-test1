@@ -12,15 +12,37 @@ description: Automates Figma Make to generate AI design drafts via browser autom
 
 This skill automates Figma Make via browser (Playwright) to generate AI design drafts. The script handles browser launch, Figma login session, prompt input, and waits for generation to complete.
 
-## Prerequisites
+## Setup (run once before first use)
 
-1. Python 3.10+ installed
-2. Install dependencies:
+Before executing the script for the first time, verify the environment:
+
+1. **Check Python (3.10+)**
+   ```bash
+   python --version
+   # or on Mac/Linux:
+   python3 --version
+   ```
+   If missing, download from https://python.org
+
+2. **Check Playwright**
+   ```bash
+   python -c "import playwright; print('OK')"
+   ```
+   If missing or error:
    ```bash
    pip install playwright
    playwright install chromium
    ```
-3. A Figma account (first run will open a browser for manual login; session is saved automatically after that)
+
+3. **Check Figma session**
+   Look for `figma-session.json` next to the script. If it doesn't exist, the first run will open a browser window — log in to Figma manually and the session will be saved automatically for future runs.
+
+4. **Check Figma Make access**
+   Your Figma account must have FigmaMake enabled. If the script can't find the Make button, your account or region may not have access yet.
+
+**When helping a user run this skill for the first time, always run through these checks before executing the script. If any check fails, help the user fix it before proceeding.**
+
+---
 
 ## Script location
 
@@ -34,11 +56,11 @@ The key variable is `DESIGN_PROMPT` near the top of the script — this is what 
 
 **If the user provided a design description:**
 - Translate it to English if needed (Figma Make works best with English prompts)
-- Edit `scripts/figma-make.py` — replace the entire `DESIGN_PROMPT` string with a well-structured English prompt based on the user's request. Include: theme/style, color palette, typography, layout sections, and visual details.
+- Edit `figma-make.py` — replace the entire `DESIGN_PROMPT` string (lines 23–41) with a well-structured English prompt based on the user's request. Include: theme/style, color palette, typography, layout sections, and visual details.
 - Confirm the edit with the user before running.
 
 **If no design description was provided:**
-- Use the existing `DESIGN_PROMPT` in the script as-is.
+- Use the existing `DESIGN_PROMPT` in the script (WoW-style game website — dark fantasy theme).
 
 ### 2. Run the script
 
@@ -53,7 +75,7 @@ python3 scripts/figma-make.py
 ```
 
 The script runs in headed (visible) browser mode. It will:
-- Load the saved Figma session from `figma-session.json` (auto login after first run)
+- Load the saved Figma session from `figma-session.json` (auto login)
 - Navigate to Figma drafts
 - Click the Make button
 - Type the design prompt
@@ -64,10 +86,10 @@ The script runs in headed (visible) browser mode. It will:
 
 Once the script outputs a URL, share it with the user:
 - Figma file URL (e.g. `https://www.figma.com/make/...`)
-- Screenshots are saved to `screenshots/` for debugging if needed
+- Note that screenshots are saved to `screenshots/` for debugging if needed
 
 ## Troubleshooting
 
-- **Login required**: If `figma-session.json` doesn't exist or is expired, the script will open a browser window and wait for manual login (up to 3 minutes). After login, it saves the session automatically.
+- **Login required**: If `figma-session.json` doesn't exist or is expired, the script will pause and ask the user to log in manually in the browser window. After login, it saves the session automatically.
 - **Make button not found**: Check `screenshots/01_figma_home.png` to see current page state. The script uses multi-strategy selectors — if Figma's UI changed, the selectors in `find_and_click_make_button()` may need updating.
 - **Generation timeout**: Script waits up to 5 minutes. If it times out, check `screenshots/05_timeout.png` and the Figma drafts page manually.
