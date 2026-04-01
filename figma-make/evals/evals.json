@@ -1,0 +1,20 @@
+{
+  "skill_name": "figma-make",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我用 FigmaMake 生成一个极简风格的音乐 App 落地页，主色调用黑白灰",
+      "expected_output": "DESIGN_PROMPT 被替换为极简音乐 App 落地页的英文描述，脚本被执行并返回 Figma 文件 URL"
+    },
+    {
+      "id": 2,
+      "prompt": "用 Figma Make 做一个电商平台首页，参考 Apple 官网的简洁风格",
+      "expected_output": "DESIGN_PROMPT 被替换为 Apple 风格电商首页的英文描述，脚本被执行并返回 Figma 文件 URL"
+    },
+    {
+      "id": 3,
+      "prompt": "用 figmamake 生成一个设计稿",
+      "expected_output": "使用 figma-make.py 中现有的默认 DESIGN_PROMPT（WoW 风格游戏官网），脚本被执行并返回 Figma 文件 URL"
+    }
+  ]
+}
