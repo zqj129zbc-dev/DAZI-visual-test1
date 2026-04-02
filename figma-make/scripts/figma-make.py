@@ -20,25 +20,58 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 # ============================================================
 # 设计需求 Prompt（可修改此处来改变生成的设计稿内容）
 # ============================================================
-DESIGN_PROMPT = """Design a game official website homepage inspired by World of Warcraft China official site style.
+DESIGN_PROMPT = """Design an Overwatch official website homepage. Reference the structural layout, interaction patterns, and visual style of Delta Force (三角洲行动) website — full-width vertical scrolling sections, cinematic immersive presentation, premium game marketing aesthetic — but adapted for Overwatch with a blue and white color scheme.
 
-Theme: Dark fantasy, epic and cinematic atmosphere
-Colors: Deep navy/black background (#060E1E), gold accents (#C8A84B, #F0C040), blue highlights
-Typography: Display/serif fonts for headings, clean sans-serif for body text
+Theme: Futuristic sci-fi hero shooter, optimistic and dynamic atmosphere
+Colors: Deep navy blue background (#00173D), vivid electric blue accents (#00B4FF, #4DB8FF), pure white (#FFFFFF) for text and highlights, light steel blue (#B8D4F0) for secondary elements. Avoid dark/military tones — keep it bright, clean, and energetic.
+Typography: Bold geometric sans-serif for headings (like Blizzard's "BigNoodle" style), clean modern sans-serif for body text. Large impactful headline sizes.
 
-Layout sections (1920px wide):
-1. Top navigation bar - game logo left, menu links center, login button and language switcher right
-2. Full-width hero banner (1920x900px) - epic dark fantasy game artwork background, large dramatic headline text, subtitle, primary CTA button with glow effect, particle/light beam decorative effects
-3. Latest news & updates section - 3 cards in a row, each with image thumbnail, category tag, title, date
-4. Game features section - 3 feature blocks with icons, bold titles, short descriptions
-5. Footer - logo, navigation links, social media icons, copyright text
+Layout sections (1920px wide, full-width vertical scroll):
+
+1. Fixed top navigation bar (slim, semi-transparent dark navy with blur)
+   - Overwatch logo (left)
+   - Nav links center: Heroes, Game Modes, News, Esports, Shop, Support
+   - Right: Login button (blue outline), Download button (solid blue CTA)
+   - Subtle bottom border in electric blue
+
+2. Full-width Hero section (100vh)
+   - Cinematic Overwatch key art background (heroes in action, dynamic poses)
+   - Large headline: "HEROES NEVER DIE" in bold white with electric blue glow
+   - Subtitle: "Join the battle. Choose your hero. Save the world."
+   - Two CTA buttons: "Play Free Now" (solid electric blue, prominent) + "Watch Trailer" (white outline)
+   - Animated particle effects / light trails in blue and white
+
+3. Hero Roster section (full-width, dark navy background)
+   - Section title: "CHOOSE YOUR HERO" in bold white
+   - Horizontal scrollable character cards (6 visible): each card shows hero portrait art, hero name, role tag (Tank / Damage / Support) with colored badge
+   - Clicking a card expands to show: hero full art, lore blurb, 4 abilities with icons and short descriptions
+   - Card hover: electric blue glow border, slight scale up
+
+4. Game Modes section (full-width)
+   - Section title: "EXPERIENCE EVERY BATTLEFIELD"
+   - 3 large cards side by side: Push, Control, Escort — each with full-width cinematic screenshot, mode name, brief description
+   - Cards have subtle parallax depth effect
+
+5. Latest News section
+   - 3 news cards in a row: thumbnail image, category tag (Update / Esports / Community), headline, date
+   - Clean white card design on light blue-tinted background
+
+6. Download / CTA section (full-width, electric blue gradient background)
+   - Bold headline: "PLAY FREE TODAY"
+   - Platform download buttons: PC (Battle.net), PlayStation, Xbox, Nintendo Switch — each with platform icon
+   - Background: abstract geometric blue pattern
+
+7. Footer (deep navy)
+   - Overwatch logo, nav links, social media icons (Twitter/X, YouTube, Instagram, TikTok)
+   - Blizzard legal text, copyright, rating badge
 
 Visual details:
-- Gold gradient borders and dividers between sections
-- Hover states: golden glow on buttons, underline on nav links
-- Corner ornament decorations (fantasy style)
-- Subtle grid/texture overlay on dark backgrounds
-- Drop shadow and inner glow effects on key elements"""
+- Hover states: buttons get bright blue glow + slight lift; nav links get electric blue underline animation
+- Section transitions: subtle blue gradient fades between sections
+- Electric blue thin divider lines between major sections
+- Glass-morphism effect on navigation bar (backdrop blur + semi-transparent)
+- Hero card interactions: smooth expand animation when selected
+- All interactive elements have smooth 0.2s transitions"""
 
 # ============================================================
 # 配置
