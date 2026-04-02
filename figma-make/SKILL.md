@@ -1,6 +1,7 @@
 ---
 name: figma-make
-description: Automates Figma Make to generate AI design drafts via browser automation.
+description: >
+  Automates Figma Make to generate AI design drafts via browser automation.
   ONLY trigger this skill when the user explicitly mentions "Figma Make", "FigmaMake",
   "figma make", or "figmamake" — do NOT trigger for generic design requests.
   Examples: "用 FigmaMake 生成设计稿", "help me use Figma Make to create a homepage",
